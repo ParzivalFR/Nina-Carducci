@@ -83,6 +83,7 @@ img {
 
 #about-me {
   flex: 2;
+  text-align: justify;
 }
 
 .about-me__title {
@@ -96,7 +97,7 @@ img {
   font-family: "Spectral";
   font-weight: 800;
   font-style: italic;
-  width: 60%;
+  width: 80%;
 }
 
 #about-me p {
@@ -312,6 +313,9 @@ footer .footer_right {
   #about,
   #contact .container {
     align-items: center;
+  }
+  .about-me__introduction {
+    width: 100%;
   }
   .about-me__title {
     margin-top: 0;
