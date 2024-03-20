@@ -65,24 +65,32 @@
       $.fn.mauGallery.methods.nextImage(options.lightboxId)
     );
     // AJOUT DE LA NAVIGATION CLAVIER
-    $(".gallery-item").on("keydown", function () {
-      if (options.lightBox && $(this).prop("tagName") === "IMG") {
+    $(".gallery-item").on("keydown", function (event) {
+      if (
+        event.key === "Enter" &&
+        options.lightBox &&
+        $(this).prop("tagName") === "IMG"
+      ) {
         $.fn.mauGallery.methods.openLightBox($(this), options.lightboxId);
       } else {
         return;
       }
     });
-    $(".gallery").on(
-      "keydown",
-      ".nav-link",
-      $.fn.mauGallery.methods.filterByTag
-    );
-    $(".gallery").on("keydown", ".mg-prev", () =>
-      $.fn.mauGallery.methods.prevImage(options.lightboxId)
-    );
-    $(".gallery").on("keydown", ".mg-next", () =>
-      $.fn.mauGallery.methods.nextImage(options.lightboxId)
-    );
+    $(".gallery").on("keydown", ".nav-link", function (event) {
+      if (event.key === "Enter") {
+        $.fn.mauGallery.methods.filterByTag.call(this);
+      }
+    });
+    $(".gallery").on("keydown", ".mg-prev", function (event) {
+      if (event.key === "Enter") {
+        $.fn.mauGallery.methods.prevImage(options.lightboxId);
+      }
+    });
+    $(".gallery").on("keydown", ".mg-next", function (event) {
+      if (event.key === "Enter") {
+        $.fn.mauGallery.methods.prevImage(options.lightboxId);
+      }
+    });
   };
   $.fn.mauGallery.methods = {
     createRowWrapper(element) {
